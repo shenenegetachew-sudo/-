@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="am" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>የእኔ ጤና - መሠረተ አንድነት በጎ አድራጎት ማህበር</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- Header / Navigation Bar -->
+    <header class="bg-emerald-700 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-white p-1 rounded-full shadow-inner">
+                    <span class="text-2xl">🩺</span>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold">የእኔ ጤና (My Health)</h1>
+                    <p class="text-xs text-emerald-100">መሠረተ አንድነት በጎ አድራጎት ማህበር (ዲላ)</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-2">
+                <button onclick="switchMainTab('modules')" id="nav-btn-modules" class="bg-emerald-800 px-3 py-1.5 rounded-lg text-xs font-semibold transition hover:bg-emerald-900">ትምህርቶች</button>
+                <button onclick="switchMainTab('register')" id="nav-btn-register" class="bg-emerald-600 px-3 py-1.5 rounded-lg text-xs font-semibold transition hover:bg-emerald-800">ምዝገባ</button>
+                <button onclick="switchMainTab('wallpapers')" id="nav-btn-wallpapers" class="bg-emerald-600 px-3 py-1.5 rounded-lg text-xs font-semibold transition hover:bg-emerald-800">ፎቶዎች</button>
+                <button onclick="switchMainTab('about')" id="nav-btn-about" class="bg-emerald-600 px-3 py-1.5 rounded-lg text-xs font-semibold transition hover:bg-emerald-800">ስለ እኛ</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-6">
+
+        <!-- MODULES TAB AREA -->
+        <div id="main-modules" class="main-tab-section active space-y-6">
+            <!-- Intro Banner -->
+            <div class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white p-6 rounded-3xl shadow-md flex flex-col md:flex-row justify-between items-center">
+                <div class="space-y-2 mb-4 md:mb-0">
+                    <span class="bg-emerald-500/50 text-xs px-3 py-1 rounded-full uppercase tracking-wider">አጠቃላይ የጤና መመሪያ</span>
+                    <h2 class="text-2xl font-bold">10ቱ አጠቃላይ የጤና ትምህርቶች (ከምንም እስከ ሕክምና)</h2>
+                    <p class="text-sm text-emerald-100 max-w-2xl">እያንዳንዱ በሽታ ምን እንደሆነ፣ አደጋዎቹን፣ ምልክቶቹን፣ አያያዝና መከላከያ መንገዶቹን በሰፊው ይረዱ።</p>
+                </div>
+                <div class="bg-white/10 p-4 rounded-2xl backdrop-blur-md text-center">
+                    <span class="block text-2xl font-bold">10</span>
+                    <span class="text-xs text-emerald-200">የጤና ሞጁሎች</span>
+                </div>
+            </div>
+
+            <!-- Sub Navigation Tabs for 10 Modules -->
+            <div class="flex overflow-x-auto space-x-2 pb-2 no-scrollbar">
+                <button onclick="switchModule('mod1')" id="btn-mod1" class="mod-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-emerald-700 text-white shadow">1. የደም ግፊት</button>
+                <button onclick="switchModule('mod2')" id="btn-mod2" class="mod-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">2. የስኳር በሽታ</button>
+                <button onclick="switchModule('mod3')" id="btn-mod3" class="mod-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">3. ኤችአይቪ እና STI</button>
+                <button onclick="switchModule('mod4')" id="btn-mod4" class="mod-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">4. እናቶችና ህፃናት</button>
+                <button onclick="switchModule('mod5')" id="btn-mod5" class="mod-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">5. ስነ-ምግብና ልማድ</button>
+                <button onclick="switchModule('mod6')" id="btn-mod6" class="mod-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">6. የአእምሮ ጤና</button>
+                <button onclick="switchModule('mod7')" id="btn-mod7" class="mod-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">7. የመጀመሪያ እርዳታ</button>
+                <button onclick="switchModule('mod8')" id="btn-mod8" class="mod-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">8. ግላዊ ንፅህና</button>
+                <button onclick="switchModule('mod9')" id="btn-mod9" class="mod-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">9. ተላላፊ በሽታዎች</button>
+                <button onclick="switchModule('mod10')" id="btn-mod10" class="mod-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">10. የአረጋውያን ጤና</button>
+            </div>
+
+            <!-- MODULE 1: Hypertension -->
+            <div id="mod1" class="module-panel space-y-6">
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 space-y-4">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">ሞጁል 01</span>
+                            <h3 class="text-xl font-bold text-slate-800 mt-2">የደም ግፊት መጨመር (Hypertension)</h3>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button onclick="toggleLike(this)" class="p-2 rounded-full bg-slate-100 hover:bg-rose-50 hover:text-rose-600 transition text-slate-500 text-sm">❤️ <span>መውደድ</span></button>
+                            <button onclick="toggleFav(this)" class="p-2 rounded-full bg-slate-100 hover:bg-amber-50 hover:text-amber-600 transition text-slate-500 text-sm">⭐ <span>ተወዳጅ</span></button>
+                        </div>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&auto=format&fit=crop&q=80" alt="Blood Pressure" class="w-full h-56 object-cover rounded-2xl shadow-inner">
+                    
+                    <div class="space-y-4 text-sm text-slate-700 leading-relaxed">
+                        <div class="bg-slate-50 p-4 rounded-2xl border-l-4 border-emerald-600">
+                            <h4 class="font-bold text-slate-900 mb-1">1. ሚንድነው? (Definition)</h4>
+                            <p>የደም ግፊት ማለት ደም በደም ስሮች ግድግዳ ላይ የሚያሳድረው ግፊት ከወትሮው ከፍ ሲል (ከ 120/80 mmHg በላይ) የሚከሰት ሥር የሰደደ የጤና እክል ነው። ልብ ደምን ወደ ሰውነት ለመረጨት ሲሠራ ከወትሮው በላይ ጠንክሮ እንዲሠራ ያስገድደዋል።</p>
+                        </div>
+                        <div class="bg-rose-50/50 p-4 rounded-2xl border-l-4 border-rose-500">
+                            <h4 class="font-bold text-rose-900 mb-1">2. የአደጋ ምክንያቶች (Risk Factors)</h4>
+                            <ul class="list-disc list-inside space-y-1 text-rose-950">
+                               <li>ከፍተኛ የጨውና የስብ አጠቃቀም</li>
+                               <li>ውፍረት እና የአካል እንቅስቃሴ እጥረት</li>
+                               <li>ማጨስ እና አልኮል መጠጣት</li>
+                               <li>ዕድሜ መግፋት እና የዘር ውርስ</li>
+                               <li>ከፍተኛ የዕለት ተዕለት ጭንቀት (Stress)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-amber-50/50 p-4 rounded-2xl border-l-4 border-amber-500">
+                            <h4 class="font-bold text-amber-900 mb-1">3. የሕመም ምልክቶች (Signs & Symptoms)</h4>
+                            <p>ብዙውን ጊዜ «ጸጥተኛው ገዳይ» በመባል ይታወቃል ምክንያቱም ምልክት ላያሳይ ይችላል። ነገር ግን ሲጠናከር፡ የራስ ምታት (በተለይ ከበስተኋላ)፣ ማዞር፣ የእይታ ብዥታ፣ የልብ ምት መምታት እና የድካም ስሜት ይታያሉ።</p>
+                        </div>
+                        <div class="bg-teal-50/50 p-4 rounded-2xl border-l-4 border-teal-600">
+                            <h4 class="font-bold text-teal-900 mb-1">4. የሕክምና አስተዳደር (Management)</h4>
+                            <p>የሐኪም ማዘዣ መድሃኒቶችን በሰዓቱ መውሰድ (ለምሳሌ፡ ACE inhibitors, Diuretics)፣ በቤት ውስጥ የደም ግፊት በየጊዜው መለካት እና መዝገብ መያዝ።</p>
+                        </div>
+                        <div class="bg-emerald-50 p-4 rounded-2xl border-l-4 border-emerald-600">
+                            <h4 class="font-bold text-emerald-900 mb-1">5. የመከላከያ መንገዶች (Prevention)</h4>
+                            <p>የጨው መጠን መቀነስ፣ ፋይበር ያላቸው ምግቦች መመገብ፣ በቀን ቢያንስ ለ 30 ደቂቃ ፈጣን እግር መንገድ ማድረግ እና ክብደት መቀነስ።</p>
+                        </div>
+                    </div>
+
+                    <!-- Personal Notes Section -->
+                    <div class="mt-6 pt-4 border-t border-slate-100">
+                        <label class="block text-xs font-bold text-slate-600 mb-2">📝 የእርስዎ ማስታወሻ (Personal Note):</label>
+                        <textarea class="w-full p-3 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none" rows="3" placeholder="ስለዚህ ጤናማ መረጃ ማስታወሻ ይጻፉ..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODULE 2: Diabetes -->
+            <div id="mod2" class="module-panel space-y-6" style="display: none;">
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 space-y-4">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">ሞጁል 02</span>
+                            <h3 class="text-xl font-bold text-slate-800 mt-2">የስኳር በሽታ (Diabetes Mellitus)</h3>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button onclick="toggleLike(this)" class="p-2 rounded-full bg-slate-100 hover:bg-rose-50 hover:text-rose-600 transition text-slate-500 text-sm">❤️ <span>መውደድ</span></button>
+                            <button onclick="toggleFav(this)" class="p-2 rounded-full bg-slate-100 hover:bg-amber-50 hover:text-amber-600 transition text-slate-500 text-sm">⭐ <span>ተወዳጅ</span></button>
+                        </div>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800&auto=format&fit=crop&q=80" alt="Diabetes" class="w-full h-56 object-cover rounded-2xl shadow-inner">
+                    
+                    <div class="space-y-4 text-sm text-slate-700 leading-relaxed">
+                        <div class="bg-slate-50 p-4 rounded-2xl border-l-4 border-emerald-600">
+                            <h4 class="font-bold text-slate-900 mb-1">1. ሚንድነው? (Definition)</h4>
+                            <p>የስኳር በሽታ ማለት ሰውነታችን (ጣፊያ) በቂ ኢንሱሊን ማምረት ሳይችል ሲቀር ወይም የሚያመርተው ኢንሱሊን በአግባቡ ሥራ ላይ ሳይውል ሲቀር በደም ውስጥ ያለው የስኳር (Glucose) መጠን ከፍ የሚልበት የጤና እክል ነው።</p>
+                        </div>
+                        <div class="bg-rose-50/50 p-4 rounded-2xl border-l-4 border-rose-500">
+                            <h4 class="font-bold text-rose-900 mb-1">2. የአደጋ ምክንያቶች (Risk Factors)</h4>
+                            <ul class="list-disc list-inside space-y-1 text-rose-950">
+                               <li>ከመጠን ያለፈ ውፍረት (Obesity)</li>
+                               <li>የዘር ውርስ (የቤተሰብ ታሪክ)</li>
+                               <li>ዕድሜ ከ 45 በላይ መሆን</li>
+                               <li>አላግባብ የተመጣጠነ ምግብ አለመመገብ</li>
+                            </ul>
+                        </div>
+                        <div class="bg-amber-50/50 p-4 rounded-2xl border-l-4 border-amber-500">
+                            <h4 class="font-bold text-amber-900 mb-1">3. የሕመም ምልክቶች (Signs & Symptoms)</h4>
+                            <p>ተደጋጋሚ የሽንት ፍላጎት፣ ከፍ ያለ የውሃ ጥም፣ ከልክ ያለፈ የራብ ስሜት፣ ምክንያቱ ያልታወቀ የክብደት መቀነስ፣ ድካም እና ቁስል በቀላሉ አለመዳን።</p>
+                        </div>
+                        <div class="bg-teal-50/50 p-4 rounded-2xl border-l-4 border-teal-600">
+                            <h4 class="font-bold text-teal-900 mb-1">4. የሕክምና አስተዳደር (Management)</h4>
+                            <p>የደም ስኳር መጠን በየዕለቱ መከታተል፣ የኢንሱሊን መርፌ ወይም ሐኪም ያዘዘውን የስኳር ሐፕ (যেমন Metformin) መውሰድ እና የአመጋገብ ስርዓትን ማስተካከል ይኖርበታል።</p>
+                        </div>
+                        <div class="bg-emerald-50 p-4 rounded-2xl border-l-4 border-emerald-600">
+                            <h4 class="font-bold text-emerald-900 mb-1">5. የመከላከያ መንገዶች (Prevention)</h4>
+                            <p>ነጭ ስኳርን መቀነስ፣ ፋይበር ያላቸው አትክልቶችንና ጥራጥሬዎችን ማዘውተር፣ ጤናማ ክብደት መጠበቅ እና አዘውትሮ ስፖርት መሥራት።</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-slate-100">
+                        <label class="block text-xs font-bold text-slate-600 mb-2">📝 የእርስዎ ማስታወሻ (Personal Note):</label>
+                        <textarea class="w-full p-3 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none" rows="3" placeholder="ማስታወሻ ይጻፉ..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODULE 3: HIV & STI Deep Dive -->
+            <div id="mod3" class="module-panel space-y-6" style="display: none;">
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 space-y-4">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">ሞጁል 03</span>
+                            <h3 class="text-xl font-bold text-slate-800 mt-2">ኤችአይቪ/ኤድስ እና ጾታዊ ግንኙነት አስተላላፊ በሽታዎች (HIV & STIs)</h3>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button onclick="toggleLike(this)" class="p-2 rounded-full bg-slate-100 hover:bg-rose-50 hover:text-rose-600 transition text-slate-500 text-sm">❤️ <span>መውደድ</span></button>
+                            <button onclick="toggleFav(this)" class="p-2 rounded-full bg-slate-100 hover:bg-amber-50 hover:text-amber-600 transition text-slate-500 text-sm">⭐ <span>ተወዳጅ</span></button>
+                        </div>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=800&auto=format&fit=crop&q=80" alt="HIV STI Health" class="w-full h-56 object-cover rounded-2xl shadow-inner">
+                    
+                    <div class="space-y-4 text-sm text-slate-700 leading-relaxed">
+                        <div class="bg-slate-50 p-4 rounded-2xl border-l-4 border-emerald-600">
+                            <h4 class="font-bold text-slate-900 mb-1">1. ሚንድነው? (Definition)</h4>
+                            <p>ኤችአይቪ (HIV) የሰውነትን በሽታ የመከላከል አቅም የሚያጠቃ ቫይረስ ሲሆን፣ ሳይታከሙ ሲቆዩ ወደ ኤድስ (AIDS) ደረጃ ሊሸጋገር ይችላል። STIs ደግሞ በግብረ-ሥጋ ግንኙነት የሚተላለፉ እንደ ጨብጥ፣ቂጥኝ፣ ክላሚዲያ ያሉ ባክቴሪያዊ ወይም ቫይረሳዊ ኢንፌክሽኖች ናቸው።</p>
+                        </div>
+                        <div class="bg-rose-50/50 p-4 rounded-2xl border-l-4 border-rose-500">
+                            <h4 class="font-bold text-rose-900 mb-1">2. የአደጋ ምክንያቶች (Risk Factors & Transmission)</h4>
+                            <ul class="list-disc list-inside space-y-1 text-rose-950">
+                               <li>ያለ ኮንዶም የሚደረግ ጾታዊ ግንኙነት</li>
+                               <li>የተበከሉ መርፌዎችን ወይም ሾጣጣ ቁሶችን በጋራ መጠቀም</li>
+                               <li>ከወላጅ ወደ ልጅ በእርግዝና፣ በወሊድ ወይም በጡት ማጥባት ጊዜ</li>
+                               <li>ብዙ የግብረ-ሥጋ አጋሮች መኖር</li>
+                            </ul>
+                        </div>
+                        <div class="bg-amber-50/50 p-4 rounded-2xl border-l-4 border-amber-500">
+                            <h4 class="font-bold text-amber-900 mb-1">3. የሕመም ምልክቶች (Signs & Symptoms)</h4>
+                            <p>የማያቋርጥ ሽንት በሚሸኑበት ጊዜ ማቃጠል፣ ያልተለመደ ፈሳሽ መውጣት፣ በብልት አካባቢ እብጠት ወይም ቁስለት፣ ለኤችአይቪ ደግሞ ረጅም ጉንፋን፣ የሊምፍ ኖዶች ማበጥ እና የክብደት መቀነስ ይታያሉ።</p>
+                        </div>
+                        <div class="bg-teal-50/50 p-4 rounded-2xl border-l-4 border-teal-600">
+                            <h4 class="font-bold text-teal-900 mb-1">4. የሕክምና አስተዳደር (Management)</h4>
+                            <p>ለኤችአይቪ አርአይቪ (ART) መድኃኒቶችን በቋሚነት መውሰድ (በሰውነት ውስጥ ቫይረሱን ወደ የማይታይ ደረጃ ዝቅ ማድረግ)። ለሌሎች STIዎች ደግሞ ሐኪም ያዘዘውን ጸረ-ባክቴሪያ (Antibiotics) በትክክል መጨረስ።</p>
+                        </div>
+                        <div class="bg-emerald-50 p-4 rounded-2xl border-l-4 border-emerald-600">
+                            <h4 class="font-bold text-emerald-900 mb-1">5. የመከላከያ መንገዶች (Prevention & Self-Protection)</h4>
+                            <p>እጅግ አስተማማኝው መንገድ ከአንድ ጸሐይና ታማኝ አጋር ጋር መኖር ወይም ኮንዶም መጠቀም ነው። እንዲሁም በየጊዜው በፈቃደኝነት የኤችአይቪ ምርመራ ማድረግ።</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-slate-100">
+                        <label class="block text-xs font-bold text-slate-600 mb-2">📝 የእርስዎ ማስታወሻ (Personal Note):</label>
+                        <textarea class="w-full p-3 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none" rows="3" placeholder="ማስታወሻ ይጻፉ..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODULE 4: Maternal & Child Health -->
+            <div id="mod4" class="module-panel space-y-6" style="display: none;">
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 space-y-4">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">ሞጁል 04</span>
+                            <h3 class="text-xl font-bold text-slate-800 mt-2">የእናቶች እና ህፃናት ጤና (Maternal & Child Health)</h3>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button onclick="toggleLike(this)" class="p-2 rounded-full bg-slate-100 hover:bg-rose-50 hover:text-rose-600 transition text-slate-500 text-sm">❤️ <span>መውደድ</span></button>
+                            <button onclick="toggleFav(this)" class="p-2 rounded-full bg-slate-100 hover:bg-amber-50 hover:text-amber-600 transition text-slate-500 text-sm">⭐ <span>ተወዳጅ</span></button>
+                        </div>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=800&auto=format&fit=crop&q=80" alt="Maternal Child Health" class="w-full h-56 object-cover rounded-2xl shadow-inner">
+                    
+                    <div class="space-y-4 text-sm text-slate-700 leading-relaxed">
+                        <div class="bg-slate-50 p-4 rounded-2xl border-l-4 border-emerald-600">
+                            <h4 class="font-bold text-slate-900 mb-1">1. ሚንድነው? (Definition)</h4>
+                            <h5 class="text-xs font-semibold text-emerald-800 mb-1">የእናቶች ጤና፡</h5>
+                            <p class="mb-2">ሴቶች በእርግዝና፣ በወሊድ እና በድህረ-ወሊድ ወቅት የሚደረግላቸው አጠቃላይ የሕክምና፣ የስነ-ልቦና እና የተመጣጠነ ምግብ እንክብካቤ ነው።</p>
+                            <h5 class="text-xs font-semibold text-emerald-800 mb-1">የህፃናት ጤና፡</h5>
+                            <p>ህፃናት ከተወለዱበት ዕለት ጀምሮ እስከ እድገት ዘመናቸው ድረስ ከበሽታ የሚጠበቁበት እና የተሟላ ክትባት የሚያገኙበት ስርዓት ነው።</p>
+                        </div>
+                        <div class="bg-rose-50/50 p-4 rounded-2xl border-l-4 border-rose-500">
+                            <h4 class="font-bold text-rose-900 mb-1">2. የአደጋ ምክንያቶች (Risk Factors)</h4>
+                            <ul class="list-disc list-inside space-y-1 text-rose-950">
+                               <li>በእርግዝና ወቅት የቅድመ-ወሊድ ክትትል (ANC) አለማድረግ</li>
+                               <li>የደም ማነስ (Anemia) እና የተመጣጠነ ምግብ እጥረት</li>
+                               <li>ህፃናት የመጀመሪያዎቹ 6 ወራት የእናት ጡት ወተት ብቻ አለማግኘት</li>
+                            </ul>
+                        </div>
+                        <div class="bg-amber-50/50 p-4 rounded-2xl border-l-4 border-amber-500">
+                            <h4 class="font-bold text-amber-900 mb-1">3. የሕመም ምልክቶች (Signs & Symptoms)</h4>
+                            <p>በእርግዝና ወቅት ከፍተኛ የራስ ምታት፣ የእግር ማበጥ፣ የደም መፍሰስ እና የሆድ ህመም። በህፃናት ላይ ደግሞ የክብደት መቀነስ፣ ተቅማጥ እና የክትባት መዘግየት ምልክቶች።</p>
+                        </div>
+                        <div class="bg-teal-50/50 p-4 rounded-2xl border-l-4 border-teal-600">
+                            <h4 class="font-bold text-teal-900 mb-1">4. የሕክምና አስተዳደር (Management)</h4>
+                            <p>ቢያንስ 4 ጊዜ የቅድመ-ወሊድ ክትትል ማድረግ፣ የፎሊክ አሲድ እና የብረት (Iron) እንክብል መውሰድ፣ እና በጤና ተቋም ውስጥ በባለሙያ መውለድ።</p>
+                        </div>
+                        <div class="bg-emerald-50 p-4 rounded-2xl border-l-4 border-emerald-600">
+                            <h4 class="font-bold text-emerald-900 mb-1">5. የመከላከያ መንገዶች (Prevention)</h4>
+                            <p>ሙሉ የልጅነት ክትባቶችን (BCG, Polio, Pentavalent, Measles) በሰዓቱ ማስከተብ እና ንጹህ የመጠጥ ውሃ መጠቀም።</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-slate-100">
+                        <label class="block text-xs font-bold text-slate-600 mb-2">📝 የእርስዎ ማስታወሻ (Personal Note):</label>
+                        <textarea class="w-full p-3 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none" rows="3" placeholder="ማስታወሻ ይጻፉ..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODULE 5: Nutrition & Lifestyle -->
+            <div id="mod5" class="module-panel space-y-6" style="display: none;">
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 space-y-4">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">ሞጁል 05</span>
+                            <h3 class="text-xl font-bold text-slate-800 mt-2">ስነ-ምግብ እና ጤናማ የአኗኗር ዘይቤ (Nutrition & Lifestyle)</h3>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button onclick="toggleLike(this)" class="p-2 rounded-full bg-slate-100 hover:bg-rose-50 hover:text-rose-600 transition text-slate-500 text-sm">❤️ <span>መውደድ</span></button>
+                            <button onclick="toggleFav(this)" class="p-2 rounded-full bg-slate-100 hover:bg-amber-50 hover:text-amber-600 transition text-slate-500 text-sm">⭐ <span>ተወዳጅ</span></button>
+                        </div>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=800&auto=format&fit=crop&q=80" alt="Nutrition Lifestyle" class="w-full h-56 object-cover rounded-2xl shadow-inner">
+                    
+                    <div class="space-y-4 text-sm text-slate-700 leading-xxxx">
+                        <div class="bg-slate-50 p-4 rounded-2xl border-l-4 border-emerald-600">
+                            <h4 class="font-bold text-slate-900 mb-1">1. ሚንድነው? (Definition)</h4>
+                            <p>ስነ-ምግብ ማለት ሰውነታችን አድጎ እንዲጠነክር፣ በሽታዎችን እንዲቋቋም እና ጉልበት እንዲኖረው የሚያስፈልጉትን ንጥረ-ነገሮች (ካርቦሃይድሬት፣ ፕሮቲን፣ ቫይታሚኖች እና ፋት) በተመጣጠነ ሁኔታ መመገብ ነው።</p>
+                        </div>
+                        <div class="bg-rose-50/50 p-4 rounded-2xl border-l-4 border-rose-500">
+                            <h4 class="font-bold text-rose-900 mb-1">2. የአደጋ ምክንያቶች (Risk Factors)</h4>
+                            <ul class="list-disc list-inside space-y-1 text-rose-950">
+                               <li>ፈጣን ምግቦችን (Junk Foods) እና ቆሻሻ ስባዎችን ማዘውተር</li>
+                               <li>የአካል ብቃት እንቅስቃሴ አለማድረግ</li>
+                               <li>ማጨስ፣ ጫት መቃም እና ከመጠን በላይ አልኮል መጠጣት</li>
+                            </ul>
+                        </div>
+                        <div class="bg-amber-50/50 p-4 rounded-2xl border-l-4 border-amber-500">
+                            <h4 class="font-bold text-amber-900 mb-1">3. የሕመም ምልክቶች (Signs & Symptoms)</h4>
+                            <p>የጡንቻ መዳከም፣ የፀጉር መውደቅ፣ ቆዳ መድረቅ፣ ፈጣን ድካም እና የበሽታ የመከላከል አቅም ማነስ።</p>
+                        </div>
+                        <div class="bg-teal-50/50 p-4 rounded-2xl border-l-4 border-teal-600">
+                            <h4 class="font-bold text-teal-900 mb-1">4. የሕክምና አስተዳደር (Management)</h4>
+                            <p>የአመጋገብ ባለሙያ ማማከር፣ አስፈላጊ የሆኑትን ቪታሚኖች እና ማዕድናት በዶክተር ትእዛዝ መውሰድ።</p>
+                        </div>
+                        <div class="bg-emerald-50 p-4 rounded-2xl border-l-4 border-emerald-600">
+                            <h4 class="font-bold text-emerald-900 mb-1">5. የመከላከያ መንገዶች (Prevention)</h4>
+                            <p>የተመጣጠነ የምግብ ሳህን መጠቀም (ግማሽ ሳህን አትክልት/ፍራፍሬ፣ ሩብ ፕሮቲን፣ ሩብ ውስብስብ ካርቦሃይድሬት) እና በቂ ውሃ መጠጣት።</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-slate-100">
+                        <label class="block text-xs font-bold text-slate-600 mb-2">📝 የእርስዎ ማስታወሻ (Personal Note):</label>
+                        <textarea class="w-full p-3 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none" rows="3" placeholder="ማስታወሻ ይጻፉ..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODULE 6: Mental Health -->
+            <div id="mod6" class="module-panel space-y-6" style="display: none;">
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 space-y-4">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">ሞጁል 06</span>
+                            <h3 class="text-xl font-bold text-slate-800 mt-2">የአእምሮ ጤና እና የስነ-ልቦና ድጋፍ (Mental Health)</h3>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button onclick="toggleLike(this)" class="p-2 rounded-full bg-slate-100 hover:bg-rose-50 hover:text-rose-600 transition text-slate-500 text-sm">❤️ <span>መውደድ</span></button>
+                            <button onclick="toggleFav(this)" class="p-2 rounded-full bg-slate-100 hover:bg-amber-50 hover:text-amber-600 transition text-slate-500 text-sm">⭐ <span>ተወዳጅ</span></button>
+                        </div>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=800&auto=format&fit=crop&q=80" alt="Mental Health" class="w-full h-56 object-cover rounded-2xl shadow-inner">
+                    
+                    <div class="space-y-4 text-sm text-slate-700 leading-relaxed">
+                        <div class="bg-slate-50 p-4 rounded-2xl border-l-4 border-emerald-600">
+                            <h4 class="font-bold text-slate-900 mb-1">1. ሚንድነው? (Definition)</h4>
+                            <p>የአእምሮ ጤና ማለት የአንድ ሰው የስሜት፣ የስነ-ልቦና እና ማህበራዊ ደህንነት ሲሆን፣ በዕለት ተዕለት ውጥረት ውስጥ ሆኖ የመሥራት፣ የመማር እና ከሌሎች ጋር የመግባባት አቅምን ይጨምራል።</p>
+                        </div>
+                        <div class="bg-rose-50/50 p-4 rounded-2xl border-l-4 border-rose-500">
+                            <h4 class="font-bold text-rose-900 mb-1">2. የአደጋ ምክንያቶች (Risk Factors)</h4>
+                            <ul class="list-disc list-inside space-y-1 text-rose-950">
+                               <li>ከፍተኛ የኢኮኖሚ ወይም የቤተሰብ ጭንቀት</li>
+                               <li>ብቸኝነት እና ከህብረተሰብ መገለል</li>
+                               <li>የአልኮል እና እጾች አላግባብ መጠቀም</li>
+                            </ul>
+                        </div>
+                        <div class="bg-amber-50/50 p-4 rounded-2xl border-l-4 border-amber-500">
+                            <h4 class="font-bold text-amber-900 mb-1">3. የሕመም ምልክቶች (Signs & Symptoms)</h4>
+                            <p>የእንቅልፍ መረበሽ ወይም ማጣት፣ የረጅም ጊዜ የሀዘን ስሜት፣ ከሰዎች ጋር ለመነጋገር ፍላጎት ማጣት እና የትኩረት ማነስ።</p>
+                        </div>
+                        <div class="bg-teal-50/50 p-4 rounded-2xl border-l-4 border-teal-600">
+                            <h4 class="font-bold text-teal-900 mb-1">4. የሕክምና አስተዳደር (Management)</h4>
+                            <p>ከስነ-ልቦና ባለሙያ ጋር መነጋገር (Counseling)፣ የባለሙያ ድጋፍ ማግኘት እና ማህበራዊ ግንኙነቶችን ማጠናከር።</p>
+                        </div>
+                        <div class="bg-emerald-50 p-4 rounded-2xl border-l-4 border-emerald-600">
+                            <h4 class="font-bold text-emerald-900 mb-1">5. የመከላከያ መንገዶች (Prevention)</h4>
+                            <p>በቂ እረፍት ማድረግ፣ ስፖርት መሥራት፣ ከቤተሰብና ወዳጆች ጋር ሃሳብ መለዋወጥ እና ጭንቀትን በውይይት መፍታት።</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-slate-100">
+                        <label class="block text-xs font-bold text-slate-600 mb-2">📝 የእርስዎ ማስታወሻ (Personal Note):</label>
+                        <textarea class="w-full p-3 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none" rows="3" placeholder="ማስታወሻ ይጻፉ..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODULE 7: First Aid -->
+            <div id="mod7" class="module-panel space-y-6" style="display: none;">
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 space-y-4">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">ሞጁል 07</span>
+                            <h3 class="text-xl font-bold text-slate-800 mt-2">የመጀመሪያ ህክምና እርዳታ (First Aid)</h3>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button onclick="toggleLike(this)" class="p-2 rounded-full bg-slate-100 hover:bg-rose-50 hover:text-rose-600 transition text-slate-500 text-sm">❤️ <span>መውደድ</span></button>
+                            <button onclick="toggleFav(this)" class="p-2 rounded-full bg-slate-100 hover:bg-amber-50 hover:text-amber-600 transition text-slate-500 text-sm">⭐ <span>ተወዳጅ</span></button>
+                        </div>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?w=800&auto=format&fit=crop&q=80" alt="First Aid" class="w-full h-56 object-cover rounded-2xl shadow-inner">
+                    
+                    <div class="space-y-4 text-sm text-slate-700 leading-relaxed">
+                        <div class="bg-slate-50 p-4 rounded-2xl border-l-4 border-emerald-600">
+                            <h4 class="font-bold text-slate-900 mb-1">1. ሚንድነው? (Definition)</h4>
+                            <p>የመጀመሪያ እርዳታ ማለት ድንገተኛ አደጋ ሲከሰት ወይም ህመም ሲያጋጥም ወደ ህክምና ተቋም ከመድረሱ በፊት ሕይወትን ለማዳን እና ህመምን ለማስታገስ የሚሰጥ ፈጣን ድጋፍ ነው።</p>
+                        </div>
+                        <div class="bg-rose-50/50 p-4 rounded-2xl border-l-4 border-rose-500">
+                            <h4 class="font-bold text-rose-900 mb-1">2. የአደጋ ምክንያቶች (Risk Factors)</h4>
+                            <p>በቤት ውስጥ ወይም በሥራ ቦታ የሚከሰቱ ቃጠሎዎች፣ መታነቅ፣ መውደቅ እና የደም መፍሰስ አደጋዎች።</p>
+                        </div>
+                        <div class="bg-amber-50/50 p-4 rounded-2xl border-l-4 border-amber-500">
+                            <h4 class="font-bold text-amber-900 mb-1">3. የሕመም ምልክቶች (Signs & Symptoms)</h4>
+                            <p>ድንገተኛ የትንፋሽ እጥረት፣ ከባድ ደም መፍሰስ፣ ማዞር እና ራስን መሳት።</p>
+                        </div>
+                        <div class="bg-teal-50/50 p-4 rounded-2xl border-l-4 border-teal-600">
+                            <h4 class="font-bold text-teal-900 mb-1">4. የሕክምና አስተዳደር (Management)</h4>
+                            <ul class="list-disc list-inside space-y-1 text-teal-950">
+                               <li><strong>ለቃጠሎ፡</strong> በቀዝቃዛ ውሃ ለ 10-20 ደቂቃ ማቀዝቀዝ (ቅቤ/ዘይት በፍጹም አለመቀባት!)</li>
+                               <li><strong>ለደም መፍሰስ፡</strong> በንጹህ ጨርቅ አጥብቆ መጫን።</li>
+                               <li><strong>ለመታነቅ፡</strong> የሄምሊች (Heimlich Maneuver) ዘዴን መጠቀም።</li>
+                            </ul>
+                        </div>
+                        <div class="bg-emerald-50 p-4 rounded-2xl border-l-4 border-emerald-600">
+                            <h4 class="font-bold text-emerald-900 mb-1">5. የመከላከያ መንገዶች (Prevention)</h4>
+                            <p>በቤት ውስጥ የመጀመሪያ እርዳታ ሳጥን (First Aid Kit) ማዘጋጀት እና መሰረታዊ ስልጠና መውሰድ።</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-slate-100">
+                        <label class="block text-xs font-bold text-slate-600 mb-2">📝 የእርስዎ ማስታወሻ (Personal Note):</label>
+                        <textarea class="w-full p-3 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none" rows="3" placeholder="ማስታወሻ ይጻፉ..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODULE 8: Personal Hygiene -->
+            <div id="mod8" class="module-panel space-y-6" style="display: none;">
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 space-y-4">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">ሞጁል 08</span>
+                            <h3 class="text-xl font-bold text-slate-800 mt-2">ግላዊና አካባቢያዊ ንፅህና (Personal & Environmental Hygiene)</h3>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button onclick="toggleLike(this)" class="p-2 rounded-full bg-slate-100 hover:bg-rose-50 hover:text-rose-600 transition text-slate-500 text-sm">❤️ <span>መውደድ</span></button>
+                            <button onclick="toggleFav(this)" class="p-2 rounded-full bg-slate-100 hover:bg-amber-50 hover:text-amber-600 transition text-slate-500 text-sm">⭐ <span>ተወዳጅ</span></button>
+                        </div>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1584744982491-665216d95f8b?w=800&auto=format&fit=crop&q=80" alt="Hygiene" class="w-full h-56 object-cover rounded-2xl shadow-inner">
+                    
+                    <div class="space-y-4 text-sm text-slate-700 leading-relaxed">
+                        <div class="bg-slate-50 p-4 rounded-2xl border-l-4 border-emerald-600">
+                            <h4 class="font-bold text-slate-900 mb-1">1. ሚንድነው? (Definition)</h4>
+                            <p>ግላዊ እና አካባቢያዊ ንፅህና ማለት አካላችንን፣ ልብሶቻችንን እንዲሁም የምንኖርበትን አካባቢ ከጀርሞች እና ከበሽታ አምጪ ተህዋስያን ንጹህ አድርጎ የመጠበቅ ተግባር ነው።</p>
+                        </div>
+                        <div class="bg-rose-50/50 p-4 rounded-2xl border-l-4 border-rose-500">
+                            <h4 class="font-bold text-rose-900 mb-1">2. የአደጋ ምክንያቶች (Risk Factors)</h4>
+                            <p>እጅን በሳሙና ባለመታጠብ፣ የተበከለ ውሃ በመጠጣት እና ቆሻሻዎችን በአግባቡ ባለማስወገድ ለተቅማጥ፣ ለኮሌራ እና ለተለያዩ የത്വስ በሽታዎች መጋለጥ።</p>
+                        </div>
+                        <div class="bg-amber-50/50 p-4 rounded-2xl border-l-4 border-amber-500">
+                            <h4 class="font-bold text-amber-900 mb-1">3. የሕመም ምልክቶች (Signs & Symptoms)</h4>
+                            <p>ተቅማጥ፣ ማስታወክ፣ የቆዳ ማሳከክ እና የሆድ ቁርጠት።</p>
+                        </div>
+                        <div class="bg-teal-50/50 p-4 rounded-2xl border-l-4 border-teal-600">
+                            <h4 class="font-bold text-teal-900 mb-1">4. የሕክምና አስተዳደር (Management)</h4>
+                            <p>የተሟላ የፈሳሽ መጠን መውሰድ (ORS)፣ እና በባለሙያ የታዘዙ ጸረ-ተህዋስያን መድሃኒቶችን መጠቀም።</p>
+                        </div>
+                        <div class="bg-emerald-50 p-4 rounded-2xl border-l-4 border-emerald-600">
+                            <h4 class="font-bold text-emerald-900 mb-1">5. የመከላከያ መንገዶች (Prevention)</h4>
+                            <p>ከምግብ በፊት እና ከመጸዳጃ ቤት በኋላ እጅን በሳሙና መታጠብ፣ ንጹህ ውሃ መጠጣት እና አካባቢን ማጽዳት።</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-slate-100">
+                        <label class="block text-xs font-bold text-slate-600 mb-2">📝 የእርስዎ ማስታወሻ (Personal Note):</label>
+                        <textarea class="w-full p-3 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none" rows="3" placeholder="ማስታወሻ ይጻፉ..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODULE 9: Infectious Diseases -->
+            <div id="mod9" class="module-panel space-y-6" style="display: none;">
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 space-y-4">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">ሞጁል 09</span>
+                            <h3 class="text-xl font-bold text-slate-800 mt-2">ተላላፊ በሽታዎች (Infectious Diseases - Malaria, TB, Pneumonia)</h3>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button onclick="toggleLike(this)" class="p-2 rounded-full bg-slate-100 hover:bg-rose-50 hover:text-rose-600 transition text-slate-500 text-sm">❤️ <span>መውደድ</span></button>
+                            <button onclick="toggleFav(this)" class="p-2 rounded-full bg-slate-100 hover:bg-amber-50 hover:text-amber-600 transition text-slate-500 text-sm">⭐ <span>ተወዳጅ</span></button>
+                        </div>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=800&auto=format&fit=crop&q=80" alt="Infectious Diseases" class="w-full h-56 object-cover rounded-2xl shadow-inner">
+                    
+                    <div class="space-y-4 text-sm text-slate-700 leading-relaxed">
+                        <div class="bg-slate-50 p-4 rounded-2xl border-l-4 border-emerald-600">
+                            <h4 class="font-bold text-slate-900 mb-1">1. ሚንድነው? (Definition)</h4>
+                            <p>ተላላፊ በሽታዎች ማለት ባክቴሪያ፣ ቫይረስ፣ ፈንገስ ወይም ጥገኛ ተሕዋስያን (Parasites) አማካኝነት ከአንድ ሰው ወደ ሌላ ሰው ወይም በvector (ለምሳሌ የወባ ትንኝ) የሚተላለፉ በሽታዎች ናቸው።</p>
+                        </div>
+                        <div class="bg-rose-50/50 p-4 rounded-2xl border-l-4 border-rose-500">
+                            <h4 class="font-bold text-rose-900 mb-1">2. የአደጋ ምክንያቶች (Risk Factors)</h4>
+                            <ul class="list-disc list-inside space-y-1 text-rose-950">
+                               <li>ደካማ የበሽታ መከላከል አቅም</li>
+                               <li>በተጨናነቀ እና አየር በማይገባበት አካባቢ መኖር</li>
+                               <li>የወባ ትንኝ መራቢያ አካባቢዎች መኖር</li>
+                            </ul>
+                        </div>
+                        <div class="bg-amber-50/50 p-4 rounded-2xl border-l-4 border-amber-500">
+                            <h4 class="font-bold text-amber-900 mb-1">3. የሕመም ምልክቶች (Signs & Symptoms)</h4>
+                            <p>ትኩሳት፣ ብርድ ብርድ ማለት፣ የማያቋርጥ ሳል፣ የደረት ህመም እና የሰውነት መዳከም።</p>
+                        </div>
+                        <div class="bg-teal-50/50 p-4 rounded-2xl border-l-4 border-teal-600">
+                            <h4 class="font-bold text-teal-900 mb-1">4. የሕክምና አስተዳደር (Management)</h4>
+                            <p>በደም ምርመራ በሽታውን ለይቶ ማወቅ እና እንደ በሽታው አይነት አንቲባዮቲክስ፣ ጸረ-ወባ መድሃኒቶችን ሙሉ መጠን መውሰድ።</p>
+                        </div>
+                        <div class="bg-emerald-50 p-4 rounded-2xl border-l-4 border-emerald-600">
+                            <h4 class="font-bold text-emerald-900 mb-1">5. የመከላከያ መንገዶች (Prevention)</h4>
+                            <p>TD/TB ክትባቶች፣ የወባ አዳኝ አጎበር መጠቀም፣ እና ንጹህ አየር ማግኘት።</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-slate-100">
+                        <label class="block text-xs font-bold text-slate-600 mb-2">📝 የእርስዎ ማስታወሻ (Personal Note):</label>
+                        <textarea class="w-full p-3 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none" rows="3" placeholder="ማስታወሻ ይጻፉ..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODULE 10: Geriatric Health -->
+            <div id="mod10" class="module-panel space-y-6" style="display: none;">
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 space-y-4">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">ሞጁል 10</span>
+                            <h3 class="text-xl font-bold text-slate-800 mt-2">የአረጋውያን ጤና እንክብካቤ (Geriatric Health)</h3>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button onclick="toggleLike(this)" class="p-2 rounded-full bg-slate-100 hover:bg-rose-50 hover:text-rose-600 transition text-slate-500 text-sm">❤️ <span>መውደድ</span></button>
+                            <button onclick="toggleFav(this)" class="p-2 rounded-full bg-slate-100 hover:bg-amber-50 hover:text-amber-600 transition text-slate-500 text-sm">⭐ <span>ተወዳጅ</span></button>
+                        </div>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1573497619953-862d61498b85?w=800&auto=format&fit=crop&q=80" alt="Geriatric Health" class="w-full h-56 object-cover rounded-2xl shadow-inner">
+                    
+                    <div class="space-y-4 text-sm text-slate-700 leading-relaxed">
+                        <div class="bg-slate-50 p-4 rounded-2xl border-l-4 border-emerald-600">
+                            <h4 class="font-bold text-slate-900 mb-1">1. ሚንድነው? (Definition)</h4>
+                            <p>የአረጋውያን ጤና ማለት በእርጅና ዘመን ከሚከሰቱ የጡንቻ መዳከም፣ የአጥንት መሳሳት (Osteoporosis)፣ የማስታወስ ችሎታ መቀነስ እና ሥር የሰደዱ በሽታዎች ጋር የሚደረግ ልዩ የጤና ክትትልና እንክብካቤ ነው።</p>
+                        </div>
+                        <div class="bg-rose-50/50 p-4 rounded-2xl border-l-4 border-rose-500">
+                            <h4 class="font-bold text-rose-900 mb-1">2. የአደጋ ምክንያቶች (Risk Factors)</h4>
+                            <p>የአጥንት ጥንካሬ መቀነስ (ለስብራት መጋለጥ)፣ የደም ግፊትና የስኳር መጨመር እና የብቸኝነት ስሜት።</p>
+                        </div>
+                        <div class="bg-amber-50/50 p-4 rounded-2xl border-l-4 border-amber-500">
+                            <h4 class="font-bold text-amber-900 mb-1">3. የሕመም ምልክቶች (Signs & Symptoms)</h4>
+                            <p>የመገጣጠሚያ ህመም፣ የመስማት እና የእይታ መቀነስ፣ የመንቀሳቀስ መከበድ።</p>
+                        </div>
+                        <div class="bg-teal-50/50 p-4 rounded-2xl border-l-4 border-teal-600">
+                            <h4 class="font-bold text-teal-900 mb-1">4. የሕክምና አስተዳደር (Management)</h4>
+                            <p>መደበኛ የጤና ምርመራዎች (Checkups) ማድረግ፣ የተመጣጠነ ካልሲየምና ቪታሚን የያዘ ምግብ መመገብ እና የህክምና ክትትል ማድረስ።</p>
+                        </div>
+                        <div class="bg-emerald-50 p-4 rounded-2xl border-l-4 border-emerald-600">
+                            <h4 class="font-bold text-emerald-900 mb-1">5. የመከላከያ መንገዶች (Prevention)</h4>
+                            <p>ቀለል ያሉ የአካል እንቅስቃሴዎችን ማድረግ፣ ማህበራዊ ህይወት ውስጥ እንዲሳተፉ ማድረግ እና ፍቅርና እንክብካቤ መስጠት።</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-slate-100">
+                        <label class="block text-xs font-bold text-slate-600 mb-2">📝 የእርስዎ ማስታወሻ (Personal Note):</label>
+                        <textarea class="w-full p-3 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none" rows="3" placeholder="ማስታወሻ ይጻፉ..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- REGISTRATION TAB AREA -->
+        <div id="main-register" class="main-tab-section space-y-6" style="display: none;">
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 max-w-2xl mx-auto">
+                <div class="text-center mb-6">
+                    <span class="text-3xl">📝</span>
+                    <h2 class="text-2xl font-bold text-slate-800 mt-2">የመሠረተ አንድነት በጎ አድራጎት ማህበር</h2>
+                    <p class="text-xs text-slate-500 mt-1">አባል ለመሆን ወይም በበጎ ፈቃድ ዘመቻዎች ለመሳተፍ ከታች ያለውን ቅጽ ይሙሉ</p>
+                </div>
+
+                <form action="https://formspree.io/f/mesereteadinetdilla@gmail.com" method="POST" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">ሙሉ ስም (Full Name)</label>
+                        <input type="text" name="fullname" required class="w-full p-3 text-sm border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none" placeholder="ስምዎን ያስገቡ">
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">ስልክ ቁጥር (Phone Number)</label>
+                            <input type="tel" name="phone" required class="w-full p-3 text-sm border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none" placeholder="09xxxxxxxx">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">ኢሜይል (Email)</label>
+                            <input type="email" name="email" class="w-full p-3 text-sm border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none" placeholder="example@gmail.com">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">የሚሳተፉበት የሥራ ዘርፍ (Area of Interest)</label>
+                        <select name="department" class="w-full p-3 text-sm border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none bg-white">
+                            <option>የጤና ግንዛቤ እና ስልጠና</option>
+                            <option>የበጎ አድራጎት እና ድጋፍ ዘመቻ</option>
+                            <option>የወጣቶች እና ማህበራዊ ግንኙነት</option>
+                            <option>አጠቃላይ አባል</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">አስተያየት ወይም ማስታወሻ (Message)</label>
+                        <textarea name="message" rows="4" class="w-full p-3 text-sm border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none" placeholder="የእርስዎ ሐሳብ..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-md transition text-sm">መረጃውን ላክ (Submit to mesereteadinetdilla@gmail.com)</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- WALLPAPERS TAB AREA -->
+        <div id="main-wallpapers" class="main-tab-section space-y-6" style="display: none;">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-bold text-slate-800">የማህበሩ እና የጤና ባለሙያዎች Wallpapers</h2>
+                <p class="text-xs text-slate-500 mt-1">ለስልክዎ ወይም ለኮምፒዩተርዎ ማሳያ የሚሆኑ ውብ ምስሎች</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-3 rounded-2xl shadow-sm border border-slate-100 space-y-3">
+                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&auto=format&fit=crop&q=80" alt="Wallpaper 1" class="w-full h-48 object-cover rounded-xl">
+                    <p class="text-xs font-semibold text-slate-700 text-center">የጤና ክብካቤ እና ትብብር</p>
+                </div>
+                <div class="bg-white p-3 rounded-2xl shadow-sm border border-slate-100 space-y-3">
+                    <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=800&auto=format&fit=crop&q=80" alt="Wallpaper 2" class="w-full h-48 object-cover rounded-xl">
+                    <p class="text-xs font-semibold text-slate-700 text-center">የማህበረሰብ ጤና ግንዛቤ</p>
+                </div>
+                <div class="bg-white p-3 rounded-2xl shadow-sm border border-slate-100 space-y-3">
+                    <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?w=800&auto=format&fit=crop&q=80" alt="Wallpaper 3" class="w-full h-48 object-cover rounded-xl">
+                    <p class="text-xs font-semibold text-slate-700 text-center">የመጀመሪያ እርዳታ እና ድጋፍ</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ABOUT TAB AREA -->
+        <div id="main-about" class="main-tab-section space-y-6" style="display: none;">
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 max-w-3xl mx-auto space-y-6 text-center">
+                <div class="w-24 h-24 bg-emerald-100 rounded-full flex items-center justify-center mx-auto text-4xl shadow-inner">
+                    🩺
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-800">መሠረተ አንድነት በጎ አድራጎት ማህበር</h2>
+                    <p class="text-xs text-emerald-600 font-semibold mt-1">ዲላ፣ ኢትዮጵያ</p>
+                </div>
+                <p class="text-sm text-slate-600 leading-relaxed max-w-xl mx-auto">
+                    ይህ መተግበሪያ የተዘጋጀው በማህበሩ ፕሬዚዳንት እና በነርሲንግ ባለሙያ በደሳለኝ ጌታቸው ሲሆን፣ የማህበረሰቡን ጤና ግንዛቤ ከፍ ለማድረግ እና የተሟላ የጤና ትምህርት በስፋት ተደራሽ ለማድረግ ታስቦ የተሰራ ነው።
+                </p>
+                <div class="bg-emerald-50 p-6 rounded-2xl text-left space-y-2 max-w-md mx-auto text-xs text-emerald-900">
+                    <p><strong>አዘጋጅ/Developer:</strong> ደሳለኝ ጌታቸው (President & Nurse Professional)</p>
+                    <p><strong>ስልክ ቁጥር:</strong> 0942820079</p>
+                    <p><strong>ኢሜይል:</strong> getachewd714@gmail.com / mesereteadinetdilla@gmail.com</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 mt-12 py-4 text-center text-xs text-slate-500">
+        <p>© 2026 መሠረተ አንድነት በጎ አድራጎት ማህበር | አዘጋጅ፡ ደሳለኝ ጌታቸው</p>
+    </footer>
+
+    <!-- JavaScript Controllers -->
+    <script>
+        function switchMainTab(tabName) {
+            document.querySelectorAll('.main-tab-section').forEach(el => el.style.display = 'none');
+            document.getElementById('main-' + tabName).style.display = 'block';
+
+            ['modules', 'register', 'wallpapers', 'about'].forEach(t => {
+                const btn = document.getElementById('nav-btn-' + t);
+                if(t === tabName) {
+                    btn.className = "bg-emerald-800 px-3 py-1.5 rounded-lg text-xs font-semibold transition hover:bg-emerald-900";
+                } else {
+                    btn.className = "bg-emerald-600 px-3 py-1.5 rounded-lg text-xs font-semibold transition hover:bg-emerald-800";
+                }
+            });
+        }
+
+        function switchModule(modId) {
+            document.querySelectorAll('.module-panel').forEach(el => el.style.display = 'none');
+            document.getElementById(modId).style.display = 'block';
+
+            document.querySelectorAll('.mod-btn').forEach(btn => {
+                btn.className = "mod-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:bg-slate-100";
+            });
+            const activeBtn = document.getElementById('btn-' + modId);
+            activeBtn.className = "mod-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-emerald-700 text-white shadow";
+        }
+
+        function toggleLike(btn) {
+            const span = btn.querySelector('span');
+            if(span.innerText === 'መውደድ') {
+                span.innerText = 'ተወዷል';
+                btn.classList.add('bg-rose-50', 'text-rose-600');
+            } else {
+                span.innerText = 'መውደድ';
+                btn.classList.remove('bg-rose-50', 'text-rose-600');
+            }
+        }
+
+        function toggleFav(btn) {
+            const span = btn.querySelector('span');
+            if(span.innerText === 'ተወዳጅ') {
+                span.innerText = 'ተቀምጧል';
+                btn.classList.add('bg-amber-50', 'text-amber-600');
+            } else {
+                span.innerText = 'ተወዳጅ';
+                btn.classList.remove('bg-amber-50', 'text-amber-600');
+            }
+        }
+    </script>
+</body>
+</html>
